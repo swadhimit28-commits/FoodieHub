@@ -1,0 +1,1054 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FoodieHub | Online Food Ordering System</title>
+
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Bootstrap Icons -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+
+    <!-- Custom CSS (Relative path for GitHub Pages) -->
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+
+    <!-- 1. NAVIGATION BAR -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+        <div class="container">
+            <a class="navbar-brand fw-bold" href="#home">
+                <i class="bi bi-fire text-warning fs-4"></i>
+                <span>FOODIEHUB</span>
+                <span class="brand-badge ms-1">DELIVERY</span>
+            </a>
+
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#foodieNavbar"
+                aria-controls="foodieNavbar" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="foodieNavbar">
+                <ul class="navbar-nav ms-auto align-items-lg-center">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="#home">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#categories">Categories</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#foods">Menu</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#about">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#services">Services</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#faq">FAQ</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#contact">Contact</a>
+                    </li>
+                    <li class="nav-item" id="navMyOrdersLink" style="display: none;">
+                        <a class="nav-link text-warning fw-semibold" href="my-orders.html">
+                            <i class="bi bi-bag-check me-1"></i> My Orders
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-light" href="admin.html" title="Admin Control Center">
+                            <i class="bi bi-shield-lock me-1"></i> Admin
+                        </a>
+                    </li>
+
+                    <!-- Cart Trigger Button -->
+                    <li class="nav-item ms-lg-2 my-2 my-lg-0">
+                        <button class="btn btn-outline-warning btn-sm cart-nav-btn px-3 py-1" type="button"
+                            data-bs-toggle="offcanvas" data-bs-target="#cartOffcanvas" aria-controls="cartOffcanvas">
+                            <i class="bi bi-cart3 fs-6"></i>
+                            <span class="d-none d-lg-inline">Cart</span>
+                            <span class="cart-count-badge" style="display: none;">0</span>
+                        </button>
+                    </li>
+
+                    <!-- Dynamic Auth Container (Login / Register / Profile) -->
+                    <li class="nav-item ms-lg-3 my-2 my-lg-0" id="navAuthContainer">
+                        <div class="d-flex gap-2">
+                            <button class="btn btn-outline-light btn-sm" data-bs-toggle="modal" data-bs-target="#loginModal">
+                                Login
+                            </button>
+                            <button class="btn btn-warning btn-sm" data-bs-toggle="modal" data-bs-target="#registerModal">
+                                Register
+                            </button>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+
+    <!-- 2. HERO CAROUSEL -->
+    <section id="home">
+        <div id="foodieCarousel" class="carousel slide" data-bs-ride="carousel" data-bs-interval="4000">
+            <div class="carousel-indicators">
+                <button type="button" data-bs-target="#foodieCarousel" data-bs-slide-to="0" class="active"
+                    aria-current="true" aria-label="Slide 1"></button>
+                <button type="button" data-bs-target="#foodieCarousel" data-bs-slide-to="1"
+                    aria-label="Slide 2"></button>
+                <button type="button" data-bs-target="#foodieCarousel" data-bs-slide-to="2"
+                    aria-label="Slide 3"></button>
+            </div>
+
+            <div class="carousel-inner">
+                <!-- SLIDE 1 -->
+                <div class="carousel-item active">
+                    <img src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=1600&q=80"
+                        class="d-block w-100 hero-img" alt="Delicious gourmet feast">
+                    <div class="carousel-caption">
+                        <h1>Welcome to FoodieHub</h1>
+                        <p>Experience Delicious Food Delivered Hot & Fresh to Your Doorstep</p>
+                        <div class="hero-btn-group">
+                            <a href="#foods" class="btn btn-warning btn-lg px-4 shadow">
+                                <i class="bi bi-bag-check-fill me-1"></i> Order Now
+                            </a>
+                            <a href="#categories" class="btn btn-outline-light btn-lg px-4 shadow">
+                                Explore Categories
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- SLIDE 2 -->
+                <div class="carousel-item">
+                    <img src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?auto=format&fit=crop&w=1600&q=80"
+                        class="d-block w-100 hero-img" alt="Top kitchen culinary mastery">
+                    <div class="carousel-caption">
+                        <h1>Authentic Flavors, Everyday</h1>
+                        <p>Handcrafted by Master Chefs from the City's Highest-Rated Kitchens</p>
+                        <div class="hero-btn-group">
+                            <a href="#foods" class="btn btn-warning btn-lg px-4 shadow">
+                                <i class="bi bi-menu-app me-1"></i> Explore Menu
+                            </a>
+                            <a href="#about" class="btn btn-outline-light btn-lg px-4 shadow">
+                                Our Story
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- SLIDE 3 -->
+                <div class="carousel-item">
+                    <img src="https://images.unsplash.com/photo-1513104890138-7c749659a591?auto=format&fit=crop&w=1600&q=80"
+                        class="d-block w-100 hero-img" alt="Fresh artisan pizza">
+                    <div class="carousel-caption">
+                        <h1>Fastest Doorstep Delivery</h1>
+                        <p>Piping Hot Meals in 30 Minutes with Real-time Order Tracking</p>
+                        <div class="hero-btn-group">
+                            <a href="#foods" class="btn btn-warning btn-lg px-4 shadow">
+                                <i class="bi bi-cart3 me-1"></i> Order Now
+                            </a>
+                            <a href="#services" class="btn btn-outline-light btn-lg px-4 shadow">
+                                Why Choose Us
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- PREVIOUS -->
+            <button class="carousel-control-prev" type="button" data-bs-target="#foodieCarousel" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon"></span>
+                <span class="visually-hidden">Previous</span>
+            </button>
+
+            <!-- NEXT -->
+            <button class="carousel-control-next" type="button" data-bs-target="#foodieCarousel" data-bs-slide="next">
+                <span class="carousel-control-next-icon"></span>
+                <span class="visually-hidden">Next</span>
+            </button>
+        </div>
+    </section>
+
+
+    <!-- 3. ABOUT OUR PLATFORM -->
+    <section id="about" class="container py-5 my-3">
+        <div class="text-center mb-5">
+            <h6 class="text-warning fw-bold text-uppercase letter-spacing-1">Taste The Difference</h6>
+            <h2 class="fw-bold">About Our Platform</h2>
+            <p class="text-muted mx-auto" style="max-width: 650px;">
+                FoodieHub connects discerning food lovers with top culinary artisans and premier restaurants, delivering fresh, hygienic, and authentic dishes right to your doorstep.
+            </p>
+        </div>
+
+        <div class="row align-items-center g-5">
+            <div class="col-md-6">
+                <div class="about-img-container">
+                    <img src="https://images.unsplash.com/photo-1556910103-1c02745aae4d?auto=format&fit=crop&w=1000&q=80"
+                        alt="Chef cooking fresh culinary delight">
+                    <div class="about-badge-float">
+                        <h5>100% Fresh</h5>
+                        <small>Organic & Pure Ingredients</small>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-6">
+                <h3 class="fw-bold mb-3">Your Cravings Are Our Top Priority</h3>
+                <p class="text-secondary leading-relaxed">
+                    At FoodieHub, food isn't just fuel—it is an experience. We partner exclusively with certified, sanitary cloud kitchens and historic heritage restaurants to bring you unbeatable culinary variety, from traditional South Indian tiffins and North Indian curries to artisanal wood-fired pizzas and indulgent desserts.
+                </p>
+
+                <ul class="about-feature-list">
+                    <li><i class="bi bi-check-circle-fill"></i> Freshly prepared meals cooked exclusively upon receiving your order.</li>
+                    <li><i class="bi bi-check-circle-fill"></i> Temperature-controlled, tamper-proof, eco-friendly food grade packaging.</li>
+                    <li><i class="bi bi-check-circle-fill"></i> Lightning-fast local dispatch with average delivery times under 30 minutes.</li>
+                    <li><i class="bi bi-check-circle-fill"></i> Multiple hassle-free payment channels including UPI, Cards, and Cash on Delivery.</li>
+                </ul>
+
+                <a href="#foods" class="btn btn-dark px-4 py-2 mt-2 shadow-sm">
+                    Discover More <i class="bi bi-arrow-right ms-2"></i>
+                </a>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- 4. POPULAR FOOD CATEGORIES (Category Collage matching reference site) -->
+    <section id="categories" class="bg-light py-5">
+        <div class="container">
+            <div class="text-center mb-4">
+                <h6 class="text-warning fw-bold text-uppercase letter-spacing-1">What are you craving?</h6>
+                <h2 class="fw-bold">Popular Food Categories</h2>
+                <p class="text-muted">Explore authentic flavors across our hand-curated gourmet categories</p>
+            </div>
+
+            <!-- CATEGORY COLLAGE (Layout identical to reference .room-collage) -->
+            <div class="category-collage">
+                <!-- SOUTH INDIAN (Featured 2x2 Tile) -->
+                <div class="collage-item south-indian" onclick="filterByCategory('South Indian'); window.location.hash='#foods';">
+                    <img src="https://images.unsplash.com/photo-1668236543090-82eba5ee5976?auto=format&fit=crop&w=1000&q=80"
+                        alt="South Indian Dosa">
+                    <div class="category-overlay">
+                        <h4>South Indian</h4>
+                        <p><i class="bi bi-arrow-right-circle me-1"></i> Crispy Dosas, Idlis, Vadas & Biryanis</p>
+                    </div>
+                </div>
+
+                <!-- NORTH INDIAN -->
+                <div class="collage-item north-indian" onclick="filterByCategory('North Indian'); window.location.hash='#foods';">
+                    <img src="https://images.unsplash.com/photo-1631452180519-c014fe946bc7?auto=format&fit=crop&w=800&q=80"
+                        alt="North Indian Paneer Butter Masala">
+                    <div class="category-overlay">
+                        <h4>North Indian</h4>
+                        <p><i class="bi bi-arrow-right-circle me-1"></i> Rich Curries, Butter Naans & Dal</p>
+                    </div>
+                </div>
+
+                <!-- CHINESE -->
+                <div class="collage-item chinese-food" onclick="filterByCategory('Chinese'); window.location.hash='#foods';">
+                    <img src="https://images.unsplash.com/photo-1585032226651-759b368d7246?auto=format&fit=crop&w=800&q=80"
+                        alt="Chinese Hakka Noodles">
+                    <div class="category-overlay">
+                        <h4>Chinese</h4>
+                        <p><i class="bi bi-arrow-right-circle me-1"></i> Wok Noodles, Fried Rice & Dim Sums</p>
+                    </div>
+                </div>
+
+                <!-- FAST FOOD -->
+                <div class="collage-item fast-food" onclick="filterByCategory('Fast Food'); window.location.hash='#foods';">
+                    <img src="https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&w=800&q=80"
+                        alt="Fast Food Burger and Fries">
+                    <div class="category-overlay">
+                        <h4>Fast Food</h4>
+                        <p><i class="bi bi-arrow-right-circle me-1"></i> Gourmet Burgers, Fries & Wings</p>
+                    </div>
+                </div>
+
+                <!-- PIZZA -->
+                <div class="collage-item pizza-food" onclick="filterByCategory('Pizza'); window.location.hash='#foods';">
+                    <img src="https://images.unsplash.com/photo-1604382355076-af4b0eb60143?auto=format&fit=crop&w=800&q=80"
+                        alt="Artisan Italian Pizza">
+                    <div class="category-overlay">
+                        <h4>Pizza</h4>
+                        <p><i class="bi bi-arrow-right-circle me-1"></i> Wood-Fired & Cheesy Slices</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Extra 6th Category banner: Desserts -->
+            <div class="row g-3 mt-3">
+                <div class="col-12">
+                    <div class="p-4 rounded-4 shadow-sm text-white position-relative overflow-hidden cursor-pointer"
+                         style="background: linear-gradient(rgba(0,0,0,0.65), rgba(0,0,0,0.65)), url('https://images.unsplash.com/photo-1606313564200-e75d5e30476c?auto=format&fit=crop&w=1200&q=80') center/cover; cursor: pointer;"
+                         onclick="filterByCategory('Desserts'); window.location.hash='#foods';">
+                        <div class="d-md-flex align-items-center justify-content-between">
+                            <div>
+                                <span class="badge bg-warning text-dark mb-2 fw-bold">Sweet Treats</span>
+                                <h3 class="fw-bold mb-1">Desserts & Confectionery</h3>
+                                <p class="mb-0 text-white-50">Molten choco lava cakes, gulab jamuns, rasmalai and artisanal pastries</p>
+                            </div>
+                            <button class="btn btn-warning mt-3 mt-md-0 fw-bold px-4">
+                                Browse Desserts <i class="bi bi-arrow-right ms-1"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="text-center mt-4">
+                <a href="#foods" class="btn btn-dark px-4 py-2">
+                    View All Foods <i class="bi bi-arrow-right ms-2"></i>
+                </a>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- 5. OUR POPULAR FOODS (Interactive Dynamic Cards) -->
+    <section id="foods" class="py-5">
+        <div class="container">
+            <div class="text-center mb-4">
+                <h6 class="text-warning fw-bold text-uppercase letter-spacing-1">Handcrafted Perfection</h6>
+                <h2 class="fw-bold">Our Popular Foods</h2>
+                <p class="text-muted">Freshly prepared, sustainably packaged, and delivered straight from our certified partner kitchens</p>
+            </div>
+
+            <!-- Search & Filter Controls -->
+            <div class="filter-search-container">
+                <div class="row g-3 align-items-center">
+                    <!-- Search input -->
+                    <div class="col-lg-5">
+                        <div class="input-group">
+                            <span class="input-group-text bg-white border-end-0 text-muted"><i class="bi bi-search"></i></span>
+                            <input type="text" id="foodSearchInput" class="form-control border-start-0 ps-0"
+                                placeholder="Search by food name, keywords, or cuisine...">
+                        </div>
+                    </div>
+
+                    <!-- Restaurant select filter -->
+                    <div class="col-lg-4">
+                        <div class="input-group">
+                            <span class="input-group-text bg-white text-muted"><i class="bi bi-shop"></i></span>
+                            <select id="restaurantFilterSelect" class="form-select">
+                                <option value="all">All Kitchens & Restaurants</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <!-- Quick Refresh -->
+                    <div class="col-lg-3 text-lg-end">
+                        <button class="btn btn-outline-secondary w-100 w-lg-auto" onclick="filterByCategory('all'); document.getElementById('foodSearchInput').value=''; document.getElementById('restaurantFilterSelect').value='all'; currentSearchTerm=''; selectedRestaurant='all'; loadFoods();">
+                            <i class="bi bi-arrow-clockwise me-1"></i> Reset Filters
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Category Filter Pills -->
+                <div class="d-flex flex-wrap gap-2 mt-3 pt-3 border-top">
+                    <button class="category-filter-btn active" data-category="all">All Items</button>
+                    <button class="category-filter-btn" data-category="South Indian">South Indian</button>
+                    <button class="category-filter-btn" data-category="North Indian">North Indian</button>
+                    <button class="category-filter-btn" data-category="Chinese">Chinese</button>
+                    <button class="category-filter-btn" data-category="Fast Food">Fast Food</button>
+                    <button class="category-filter-btn" data-category="Pizza">Pizza</button>
+                    <button class="category-filter-btn" data-category="Desserts">Desserts</button>
+                </div>
+            </div>
+
+            <!-- Loading Spinner -->
+            <div id="foodsLoadingSpinner" class="text-center py-5" style="display: none;">
+                <div class="spinner-border text-warning" role="status" style="width: 3rem; height: 3rem;">
+                    <span class="visually-hidden">Loading food items...</span>
+                </div>
+                <p class="text-muted mt-2">Fetching delicious menu items...</p>
+            </div>
+
+            <!-- Empty State -->
+            <div id="foodsEmptyState" class="text-center py-5" style="display: none;">
+                <div class="display-3 text-muted mb-3"><i class="bi bi-search"></i></div>
+                <h4 class="fw-bold">No food items found</h4>
+                <p class="text-muted">Try adjusting your search criteria or selecting a different category.</p>
+                <button class="btn btn-warning px-4" onclick="filterByCategory('all')">View All Foods</button>
+            </div>
+
+            <!-- Food Cards Grid (Populated dynamically via JS from localStorage) -->
+            <div class="row g-4" id="foodsGridContainer"></div>
+        </div>
+    </section>
+
+
+    <!-- 6. OUR SERVICES (Grid with background images matching reference site) -->
+    <section id="services" class="py-5 bg-light">
+        <div class="container">
+            <div class="text-center mb-5">
+                <h6 class="text-warning fw-bold text-uppercase letter-spacing-1">Premium Experience</h6>
+                <h2 class="fw-bold">Our Services</h2>
+                <p class="text-muted">Everything you need for a fast, delicious, and memorable food ordering experience</p>
+            </div>
+
+            <!-- 6 Services Grid -->
+            <div class="services-grid">
+                <!-- 1. FAST DELIVERY -->
+                <div class="service-card" style="background-image: url('https://images.unsplash.com/photo-1526367790999-0150786686a2?auto=format&fit=crop&w=800&q=80');">
+                    <div class="service-overlay">
+                        <i class="bi bi-lightning-charge service-icon"></i>
+                        <h4>Fast Delivery</h4>
+                        <p>Piping hot food delivered by trained delivery riders to your doorstep within 30 minutes.</p>
+                    </div>
+                </div>
+
+                <!-- 2. FRESH FOOD -->
+                <div class="service-card" style="background-image: url('https://images.unsplash.com/photo-1540420773420-3366772f4999?auto=format&fit=crop&w=800&q=80');">
+                    <div class="service-overlay">
+                        <i class="bi bi-patch-check service-icon"></i>
+                        <h4>Fresh Food</h4>
+                        <p>Every dish is cooked fresh upon order confirmation using organic and hand-selected ingredients.</p>
+                    </div>
+                </div>
+
+                <!-- 3. SECURE ORDERING -->
+                <div class="service-card" style="background-image: url('https://images.unsplash.com/photo-1563013544-824ae1b704d3?auto=format&fit=crop&w=800&q=80');">
+                    <div class="service-overlay">
+                        <i class="bi bi-shield-check service-icon"></i>
+                        <h4>Secure Ordering</h4>
+                        <p>Encrypted order verification with instant confirmation and real-time tracking.</p>
+                    </div>
+                </div>
+
+                <!-- 4. QUALITY RESTAURANTS -->
+                <div class="service-card" style="background-image: url('https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=800&q=80');">
+                    <div class="service-overlay">
+                        <i class="bi bi-shop service-icon"></i>
+                        <h4>Quality Restaurants</h4>
+                        <p>Exclusively partnered with food-safety certified, hygienic, and highly-rated kitchens.</p>
+                    </div>
+                </div>
+
+                <!-- 5. EASY PAYMENTS -->
+                <div class="service-card" style="background-image: url('https://images.unsplash.com/photo-1559526324-4b87b5e36e44?auto=format&fit=crop&w=800&q=80');">
+                    <div class="service-overlay">
+                        <i class="bi bi-wallet2 service-icon"></i>
+                        <h4>Easy Payments</h4>
+                        <p>Multiple convenient payment methods including Cash on Delivery, UPI, and Cards.</p>
+                    </div>
+                </div>
+
+                <!-- 6. CUSTOMER SUPPORT -->
+                <div class="service-card" style="background-image: url('https://images.unsplash.com/photo-1534536281715-e28d76689b4d?auto=format&fit=crop&w=800&q=80');">
+                    <div class="service-overlay">
+                        <i class="bi bi-headset service-icon"></i>
+                        <h4>Customer Support</h4>
+                        <p>Dedicated round-the-clock support assistance ready to resolve all your order queries.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- 7. FREQUENTLY ASKED QUESTIONS -->
+    <section id="faq" class="py-5">
+        <div class="container">
+            <div class="text-center mb-5">
+                <h6 class="text-warning fw-bold text-uppercase letter-spacing-1">Have Questions?</h6>
+                <h2 class="fw-bold">Frequently Asked Questions</h2>
+                <p class="text-muted">Quick answers to help you navigate your food ordering journey</p>
+            </div>
+
+            <div class="row justify-content-center">
+                <div class="col-lg-9">
+                    <div class="accordion shadow-sm rounded-4 overflow-hidden" id="faqAccordion">
+                        <!-- FAQ 1 -->
+                        <div class="accordion-item">
+                            <h2 class="accordion-header">
+                                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#faq1">
+                                    <i class="bi bi-question-circle-fill text-warning me-2"></i> How do I place an order on FoodieHub?
+                                </button>
+                            </h2>
+                            <div id="faq1" class="accordion-collapse collapse show" data-bs-parent="#faqAccordion">
+                                <div class="accordion-body text-secondary">
+                                    Browse our menu by category or kitchen, click <strong>"Add to Cart"</strong> on your chosen dishes, click the cart icon in the top navigation bar, and proceed through our seamless 4-step checkout to place your order.
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- FAQ 2 -->
+                        <div class="accordion-item">
+                            <h2 class="accordion-header">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq2">
+                                    <i class="bi bi-question-circle-fill text-warning me-2"></i> What payment methods do you accept?
+                                </button>
+                            </h2>
+                            <div id="faq2" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                                <div class="accordion-body text-secondary">
+                                    We accept <strong>Cash on Delivery (COD)</strong>, Google Pay / PhonePe (UPI), Credit/Debit Cards, and Net Banking. You can pick your preferred mode in Step 3 of checkout.
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- FAQ 3 -->
+                        <div class="accordion-item">
+                            <h2 class="accordion-header">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq3">
+                                    <i class="bi bi-question-circle-fill text-warning me-2"></i> Can I cancel my food order?
+                                </button>
+                            </h2>
+                            <div id="faq3" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                                <div class="accordion-body text-secondary">
+                                    Yes! You can cancel any eligible order directly from your <strong>"My Orders"</strong> page as long as its status is still marked as <em>Pending</em> (before kitchen preparation begins).
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- FAQ 4 -->
+                        <div class="accordion-item">
+                            <h2 class="accordion-header">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq4">
+                                    <i class="bi bi-question-circle-fill text-warning me-2"></i> How fast is delivery and are items packaged safely?
+                                </button>
+                            </h2>
+                            <div id="faq4" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                                <div class="accordion-body text-secondary">
+                                    Our average delivery time is <strong>30-40 minutes</strong> depending on distance. All food is sealed in insulated, spill-resistant, tamper-evident containers to ensure maximum temperature retention and hygiene.
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- FAQ 5 -->
+                        <div class="accordion-item">
+                            <h2 class="accordion-header">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq5">
+                                    <i class="bi bi-question-circle-fill text-warning me-2"></i> Are the partner restaurants certified for hygiene?
+                                </button>
+                            </h2>
+                            <div id="faq5" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                                <div class="accordion-body text-secondary">
+                                    All partner kitchens undergo strict quality audits and hold valid FSSAI food-safety certifications. We maintain a zero-tolerance policy regarding cleanliness and freshness.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- 8. CONTACT US -->
+    <section id="contact" class="py-5 bg-light">
+        <div class="container">
+            <div class="text-center mb-5">
+                <h6 class="text-warning fw-bold text-uppercase letter-spacing-1">Get In Touch</h6>
+                <h2 class="fw-bold">Contact Us</h2>
+                <p class="text-muted">Have feedback, partnership queries, or order questions? We'd love to hear from you!</p>
+            </div>
+
+            <div class="row g-4 align-items-stretch">
+                <!-- Contact Info Card -->
+                <div class="col-lg-5">
+                    <div class="contact-info-card">
+                        <h4 class="fw-bold text-dark mb-4">Contact Information</h4>
+
+                        <div class="contact-item">
+                            <div class="contact-item-icon">
+                                <i class="bi bi-geo-alt-fill"></i>
+                            </div>
+                            <div>
+                                <h6 class="fw-bold mb-1">Headquarters</h6>
+                                <p class="text-muted mb-0">FoodieHub Tower, Level 4, Tech Park Boulevard, Bangalore, Karnataka 560100</p>
+                            </div>
+                        </div>
+
+                        <div class="contact-item">
+                            <div class="contact-item-icon">
+                                <i class="bi bi-telephone-fill"></i>
+                            </div>
+                            <div>
+                                <h6 class="fw-bold mb-1">Call Us (Toll-Free)</h6>
+                                <p class="text-muted mb-0">+91 98765 43210 / +91 80 4455 6677</p>
+                            </div>
+                        </div>
+
+                        <div class="contact-item">
+                            <div class="contact-item-icon">
+                                <i class="bi bi-envelope-fill"></i>
+                            </div>
+                            <div>
+                                <h6 class="fw-bold mb-1">Email Support</h6>
+                                <p class="text-muted mb-0">support@foodiehub.com / info@foodiehub.com</p>
+                            </div>
+                        </div>
+
+                        <div class="contact-item">
+                            <div class="contact-item-icon">
+                                <i class="bi bi-clock-fill"></i>
+                            </div>
+                            <div>
+                                <h6 class="fw-bold mb-1">Operating Hours</h6>
+                                <p class="text-muted mb-0">Monday – Sunday: 7:00 AM – 11:30 PM</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Contact Form Card -->
+                <div class="col-lg-7">
+                    <div class="contact-info-card">
+                        <h4 class="fw-bold text-dark mb-3">Send Us a Message</h4>
+                        <form id="contactForm">
+                            <div class="row g-3">
+                                <div class="col-md-6">
+                                    <label class="form-label small fw-semibold">Your Name *</label>
+                                    <input type="text" id="contactName" class="form-control" placeholder="Enter your full name" required>
+                                </div>
+                                <div class="col-md-6">
+                                    <label class="form-label small fw-semibold">Email Address *</label>
+                                    <input type="email" id="contactEmail" class="form-control" placeholder="name@example.com" required>
+                                </div>
+                                <div class="col-12">
+                                    <label class="form-label small fw-semibold">Subject</label>
+                                    <input type="text" id="contactSubject" class="form-control" placeholder="Inquiry / Feedback / Support">
+                                </div>
+                                <div class="col-12">
+                                    <label class="form-label small fw-semibold">Message *</label>
+                                    <textarea id="contactMessage" rows="4" class="form-control" placeholder="Write your message here..." required></textarea>
+                                </div>
+                                <div class="col-12 mt-4">
+                                    <button type="submit" class="btn btn-warning px-4 py-2 fw-semibold">
+                                        <i class="bi bi-send-fill me-1"></i> Send Message
+                                    </button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- 9. FOOTER -->
+    <footer class="pt-5 pb-3">
+        <div class="container">
+            <div class="row g-4 pb-4 border-bottom border-secondary">
+                <!-- Col 1: Brand -->
+                <div class="col-lg-4 col-md-6">
+                    <h5 class="fw-bold text-white mb-3 d-flex align-items-center gap-2">
+                        <i class="bi bi-fire text-warning"></i> FOODIEHUB
+                    </h5>
+                    <p class="text-secondary small leading-relaxed">
+                        FoodieHub is a modern, high-performance online food ordering and delivery management system designed for speed, convenience, and superior culinary satisfaction.
+                    </p>
+                    <div class="d-flex mt-3">
+                        <a href="#" class="footer-social-icon"><i class="bi bi-facebook"></i></a>
+                        <a href="#" class="footer-social-icon"><i class="bi bi-twitter-x"></i></a>
+                        <a href="#" class="footer-social-icon"><i class="bi bi-instagram"></i></a>
+                        <a href="#" class="footer-social-icon"><i class="bi bi-youtube"></i></a>
+                    </div>
+                </div>
+
+                <!-- Col 2: Quick Links -->
+                <div class="col-lg-2 col-md-6">
+                    <h6 class="fw-bold text-white mb-3 text-uppercase">Quick Links</h6>
+                    <ul class="list-unstyled small">
+                        <li class="mb-2"><a href="#home">Home</a></li>
+                        <li class="mb-2"><a href="#categories">Food Categories</a></li>
+                        <li class="mb-2"><a href="#foods">Popular Menu</a></li>
+                        <li class="mb-2"><a href="#about">About Platform</a></li>
+                        <li class="mb-2"><a href="#services">Our Services</a></li>
+                        <li class="mb-2"><a href="#faq">FAQ</a></li>
+                    </ul>
+                </div>
+
+                <!-- Col 3: Categories -->
+                <div class="col-lg-3 col-md-6">
+                    <h6 class="fw-bold text-white mb-3 text-uppercase">Cuisines</h6>
+                    <ul class="list-unstyled small">
+                        <li class="mb-2"><a href="#foods" onclick="filterByCategory('South Indian')">South Indian Tiffins</a></li>
+                        <li class="mb-2"><a href="#foods" onclick="filterByCategory('North Indian')">North Indian Specialties</a></li>
+                        <li class="mb-2"><a href="#foods" onclick="filterByCategory('Chinese')">Authentic Chinese Wok</a></li>
+                        <li class="mb-2"><a href="#foods" onclick="filterByCategory('Fast Food')">Burgers & Wings</a></li>
+                        <li class="mb-2"><a href="#foods" onclick="filterByCategory('Pizza')">Wood-Fired Pizzas</a></li>
+                        <li class="mb-2"><a href="#foods" onclick="filterByCategory('Desserts')">Artisan Desserts</a></li>
+                    </ul>
+                </div>
+
+                <!-- Col 4: Contact -->
+                <div class="col-lg-3 col-md-6">
+                    <h6 class="fw-bold text-white mb-3 text-uppercase">Help & Support</h6>
+                    <p class="text-secondary small mb-2"><i class="bi bi-geo-alt me-2 text-warning"></i> Bangalore, Karnataka, India</p>
+                    <p class="text-secondary small mb-2"><i class="bi bi-telephone me-2 text-warning"></i> +91 98765 43210</p>
+                    <p class="text-secondary small mb-2"><i class="bi bi-envelope me-2 text-warning"></i> support@foodiehub.com</p>
+                    <p class="text-secondary small mb-0"><i class="bi bi-clock me-2 text-warning"></i> Open Daily: 7 AM – 11:30 PM</p>
+                </div>
+            </div>
+
+            <!-- Bottom Copyright -->
+            <div class="d-md-flex align-items-center justify-content-between pt-3 small text-secondary">
+                <p class="mb-0">© 2026 FoodieHub – Online Food Ordering System. All Rights Reserved.</p>
+                <p class="mb-0">GitHub Pages Demonstration Edition</p>
+            </div>
+        </div>
+    </footer>
+
+
+    <!-- ========================================================
+         MODALS & DRAWERS
+    ======================================================== -->
+
+    <!-- 1. LOGIN MODAL -->
+    <div class="modal fade" id="loginModal" tabindex="-1" aria-labelledby="loginModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content shadow-lg border-0 rounded-4">
+                <div class="modal-header border-bottom-0 pb-0">
+                    <h4 class="modal-title fw-bold" id="loginModalLabel">
+                        <i class="bi bi-box-arrow-in-right text-warning me-2"></i> Customer Login
+                    </h4>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body p-4">
+                    <form id="loginForm">
+                        <div class="mb-3">
+                            <label class="form-label small fw-semibold">Email / Gmail Address *</label>
+                            <input type="email" id="loginEmail" class="form-control" value="rahul.sharma@gmail.com" placeholder="name@gmail.com" required>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label small fw-semibold">Password *</label>
+                            <input type="password" id="loginPassword" class="form-control" value="Password@123" placeholder="••••••••" required>
+                        </div>
+                        <div class="alert alert-secondary small py-2 mb-3">
+                            <i class="bi bi-info-circle me-1"></i> Demo credentials: <strong>rahul.sharma@gmail.com</strong> / <strong>Password@123</strong>
+                        </div>
+                        <button type="submit" class="btn btn-warning w-100 py-2 fw-bold mt-2">
+                            Login to Account
+                        </button>
+                    </form>
+                    <div class="text-center mt-3 small text-muted">
+                        Don't have an account?
+                        <a href="#" class="text-primary fw-semibold" data-bs-target="#registerModal" data-bs-toggle="modal">Register Now</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 2. REGISTER MODAL (Strictly matching all required fields) -->
+    <div class="modal fade" id="registerModal" tabindex="-1" aria-labelledby="registerModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+            <div class="modal-content shadow-lg border-0 rounded-4">
+                <div class="modal-header border-bottom-0 pb-0">
+                    <div>
+                        <h4 class="modal-title fw-bold" id="registerModalLabel">
+                            <i class="bi bi-person-plus text-warning me-2"></i> Customer Registration
+                        </h4>
+                        <p class="text-muted small mb-0">Join FoodieHub for easy ordering, fast delivery, and order tracking</p>
+                    </div>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body p-4">
+                    <form id="registerForm">
+                        <div class="row g-3">
+                            <!-- Name -->
+                            <div class="col-md-6">
+                                <label class="form-label small fw-semibold">Full Name *</label>
+                                <input type="text" id="regName" class="form-control" placeholder="e.g. John Doe" required>
+                            </div>
+
+                            <!-- Gmail / Email -->
+                            <div class="col-md-6">
+                                <label class="form-label small fw-semibold">Gmail / Email *</label>
+                                <input type="email" id="regEmail" class="form-control" placeholder="e.g. johndoe@gmail.com" required>
+                            </div>
+
+                            <!-- Phone Number -->
+                            <div class="col-md-6">
+                                <label class="form-label small fw-semibold">Phone Number *</label>
+                                <input type="tel" id="regPhone" class="form-control" placeholder="10-digit mobile number" required>
+                            </div>
+
+                            <!-- Password -->
+                            <div class="col-md-6">
+                                <label class="form-label small fw-semibold">Password (min 6 characters) *</label>
+                                <input type="password" id="regPassword" class="form-control" minlength="6" placeholder="••••••••" required>
+                            </div>
+
+                            <!-- Street Address -->
+                            <div class="col-12">
+                                <label class="form-label small fw-semibold">Delivery Address (Door/Flat No, Street) *</label>
+                                <input type="text" id="regAddress" class="form-control" placeholder="Flat 402, Sunshine Heights, 3rd Cross" required>
+                            </div>
+
+                            <!-- City -->
+                            <div class="col-md-4">
+                                <label class="form-label small fw-semibold">City *</label>
+                                <input type="text" id="regCity" class="form-control" placeholder="e.g. Bangalore" required>
+                            </div>
+
+                            <!-- State -->
+                            <div class="col-md-4">
+                                <label class="form-label small fw-semibold">State *</label>
+                                <input type="text" id="regState" class="form-control" placeholder="e.g. Karnataka" required>
+                            </div>
+
+                            <!-- Pincode -->
+                            <div class="col-md-4">
+                                <label class="form-label small fw-semibold">Pincode *</label>
+                                <input type="text" id="regPincode" class="form-control" placeholder="e.g. 560001" required>
+                            </div>
+                        </div>
+
+                        <div class="mt-4">
+                            <button type="submit" class="btn btn-warning w-100 py-2 fw-bold">
+                                Create Customer Account
+                            </button>
+                        </div>
+                    </form>
+                    <div class="text-center mt-3 small text-muted">
+                        Already have an account?
+                        <a href="#" class="text-primary fw-semibold" data-bs-target="#loginModal" data-bs-toggle="modal">Log in</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 3. FOOD DETAILS MODAL -->
+    <div class="modal fade" id="foodDetailsModal" tabindex="-1" aria-labelledby="foodDetailsModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+            <div class="modal-content shadow-lg border-0 rounded-4">
+                <div class="modal-header border-bottom-0 pb-0">
+                    <h5 class="modal-title fw-bold" id="foodDetailsModalLabel">Food Details</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body p-4" id="foodDetailsModalBody">
+                    <!-- Populated dynamically via JS -->
+                </div>
+                <div class="modal-footer border-top-0 pt-0">
+                    <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-warning fw-bold px-4" id="foodDetailsAddToCartBtn">
+                        <i class="bi bi-cart-plus-fill me-1"></i> Add to Cart
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 4. CART OFFCANVAS (Drawer on the Right) -->
+    <div class="offcanvas offcanvas-end shadow-lg" tabindex="-1" id="cartOffcanvas" aria-labelledby="cartOffcanvasLabel" style="width: 420px;">
+        <div class="offcanvas-header bg-dark text-white">
+            <h5 class="offcanvas-title fw-bold d-flex align-items-center gap-2" id="cartOffcanvasLabel">
+                <i class="bi bi-bag-check text-warning fs-4"></i> Your Food Cart
+            </h5>
+            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+        </div>
+        <div class="offcanvas-body d-flex flex-column p-4">
+            <!-- Empty state -->
+            <div id="cartEmptyState" class="text-center my-auto py-5" style="display: none;">
+                <div class="display-3 text-muted mb-3"><i class="bi bi-cart-x"></i></div>
+                <h5 class="fw-bold">Your cart is empty</h5>
+                <p class="text-muted small">Looks like you haven't added any appetizing foods yet.</p>
+                <button class="btn btn-warning btn-sm px-3 mt-2" data-bs-dismiss="offcanvas" onclick="window.location.hash='#foods'">
+                    Explore Delicious Menu
+                </button>
+            </div>
+
+            <!-- Cart Items Container -->
+            <div id="cartItemsList" class="flex-grow-1 overflow-auto pe-1"></div>
+
+            <!-- Cart Calculation Summary -->
+            <div id="cartSummaryBox" class="mt-3 pt-3 border-top bg-light p-3 rounded-3" style="display: none;"></div>
+
+            <!-- Cart Action Buttons -->
+            <div class="mt-3 d-flex flex-column gap-2">
+                <button class="btn btn-warning py-2 fw-bold d-flex align-items-center justify-content-center gap-2 shadow-sm"
+                        id="cartProceedCheckoutBtn" onclick="Checkout.init()">
+                    <span>Proceed to Checkout</span>
+                    <i class="bi bi-arrow-right"></i>
+                </button>
+                <div class="d-flex gap-2">
+                    <button class="btn btn-outline-dark btn-sm flex-grow-1" data-bs-dismiss="offcanvas">
+                        Continue Shopping
+                    </button>
+                    <button class="btn btn-outline-danger btn-sm" onclick="Cart.clear()" title="Clear Cart">
+                        <i class="bi bi-trash"></i> Clear
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 5. MULTI-STEP CHECKOUT MODAL -->
+    <div class="modal fade" id="checkoutModal" tabindex="-1" aria-labelledby="checkoutModalLabel" aria-hidden="true" data-bs-backdrop="static">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+            <div class="modal-content shadow-lg border-0 rounded-4">
+                <div class="modal-header bg-dark text-white">
+                    <h5 class="modal-title fw-bold" id="checkoutModalLabel">
+                        <i class="bi bi-bag-check-fill text-warning me-2"></i> FoodieHub Checkout
+                    </h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body p-4">
+                    <!-- Checkout Steps Navigation -->
+                    <div class="checkout-steps">
+                        <div class="step-indicator active" id="indicator1">
+                            <div class="step-circle">1</div>
+                            <div class="step-label">Details</div>
+                        </div>
+                        <div class="step-indicator" id="indicator2">
+                            <div class="step-circle">2</div>
+                            <div class="step-label">Address</div>
+                        </div>
+                        <div class="step-indicator" id="indicator3">
+                            <div class="step-circle">3</div>
+                            <div class="step-label">Summary</div>
+                        </div>
+                        <div class="step-indicator" id="indicator4">
+                            <div class="step-circle">4</div>
+                            <div class="step-label">Confirm</div>
+                        </div>
+                    </div>
+
+                    <!-- STEP 1: Customer Details -->
+                    <div class="checkout-step-panel" id="checkoutStep1">
+                        <h5 class="fw-bold mb-3"><i class="bi bi-person-lines-fill text-warning me-2"></i> Step 1: Customer Details</h5>
+                        <div class="row g-3">
+                            <div class="col-md-12">
+                                <label class="form-label small fw-semibold">Customer Full Name *</label>
+                                <input type="text" id="checkoutName" class="form-control" placeholder="Full Name" required>
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label small fw-semibold">Email Address *</label>
+                                <input type="email" id="checkoutEmail" class="form-control" placeholder="name@gmail.com" required>
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label small fw-semibold">Phone Number *</label>
+                                <input type="tel" id="checkoutPhone" class="form-control" placeholder="10-digit mobile number" required>
+                            </div>
+                            <div class="col-12">
+                                <label class="form-label small fw-semibold">Special Cooking / Delivery Instructions (Optional)</label>
+                                <input type="text" id="checkoutInstructions" class="form-control" placeholder="e.g. Please make it extra spicy, ring doorbell twice">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- STEP 2: Delivery Address -->
+                    <div class="checkout-step-panel d-none" id="checkoutStep2">
+                        <h5 class="fw-bold mb-3"><i class="bi bi-geo-alt-fill text-warning me-2"></i> Step 2: Delivery Address</h5>
+                        <div class="row g-3">
+                            <div class="col-12">
+                                <label class="form-label small fw-semibold">Delivery Street Address *</label>
+                                <input type="text" id="checkoutAddress" class="form-control" placeholder="House/Flat number, Building name, Street" required>
+                            </div>
+                            <div class="col-md-4">
+                                <label class="form-label small fw-semibold">City *</label>
+                                <input type="text" id="checkoutCity" class="form-control" placeholder="e.g. Bangalore" required>
+                            </div>
+                            <div class="col-md-4">
+                                <label class="form-label small fw-semibold">State *</label>
+                                <input type="text" id="checkoutState" class="form-control" placeholder="e.g. Karnataka" required>
+                            </div>
+                            <div class="col-md-4">
+                                <label class="form-label small fw-semibold">Pincode *</label>
+                                <input type="text" id="checkoutPincode" class="form-control" placeholder="e.g. 560001" required>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- STEP 3: Order Summary & Payment Mode -->
+                    <div class="checkout-step-panel d-none" id="checkoutStep3">
+                        <h5 class="fw-bold mb-3"><i class="bi bi-receipt-cutoff text-warning me-2"></i> Step 3: Order Summary & Payment</h5>
+                        <div id="checkoutSummaryItems" class="mb-4"></div>
+
+                        <div class="card p-3 border rounded-3 bg-light">
+                            <h6 class="fw-bold mb-2"><i class="bi bi-credit-card-2-front me-2 text-warning"></i> Select Payment Method</h6>
+                            <div class="d-flex flex-column gap-2">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="checkoutPaymentMethod" id="payCOD" value="Cash on Delivery" checked>
+                                    <label class="form-check-label fw-semibold" for="payCOD">
+                                        <i class="bi bi-cash-stack text-success me-1"></i> Cash on Delivery (Pay at Doorstep)
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="checkoutPaymentMethod" id="payUPI" value="UPI (GPay / PhonePe / Paytm)">
+                                    <label class="form-check-label fw-semibold" for="payUPI">
+                                        <i class="bi bi-phone text-primary me-1"></i> UPI (Google Pay, PhonePe, Paytm, QR)
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="checkoutPaymentMethod" id="payCard" value="Credit / Debit Card">
+                                    <label class="form-check-label fw-semibold" for="payCard">
+                                        <i class="bi bi-credit-card text-info me-1"></i> Credit / Debit Card / Net Banking
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- STEP 4: Review & Place Order -->
+                    <div class="checkout-step-panel d-none" id="checkoutStep4">
+                        <h5 class="fw-bold mb-3"><i class="bi bi-check-all text-success me-2"></i> Step 4: Final Review & Confirmation</h5>
+                        <div id="checkoutFinalReview"></div>
+                        <div class="alert alert-warning mt-3 small d-flex align-items-center gap-2">
+                            <i class="bi bi-info-circle-fill fs-5"></i>
+                            <div>By placing this order, you agree that your food will be freshly prepared by our partner kitchen and dispatched to your address.</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Footer Navigation Buttons -->
+                <div class="modal-footer d-flex justify-content-between">
+                    <button type="button" class="btn btn-outline-secondary" id="checkoutPrevBtn" style="display: none;" onclick="Checkout.prevStep()">
+                        <i class="bi bi-arrow-left me-1"></i> Previous
+                    </button>
+                    <div class="ms-auto d-flex gap-2">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                        <button type="button" class="btn btn-warning fw-bold px-4" id="checkoutNextBtn" onclick="Checkout.nextStep()">
+                            Next <i class="bi bi-arrow-right ms-1"></i>
+                        </button>
+                        <button type="button" class="btn btn-success fw-bold px-4" id="checkoutPlaceOrderBtn" style="display: none;" onclick="Checkout.placeOrder()">
+                            <i class="bi bi-bag-check-fill me-1"></i> Place Order
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 6. ORDER CONFIRMATION MODAL -->
+    <div class="modal fade" id="orderConfirmationModal" tabindex="-1" aria-labelledby="orderConfirmationModalLabel" aria-hidden="true" data-bs-backdrop="static">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content shadow-lg border-0 rounded-4">
+                <div class="modal-body p-4" id="orderConfirmationDetails">
+                    <!-- Populated via checkout.js -->
+                </div>
+                <div class="modal-footer border-top-0 pt-0 justify-content-center gap-2">
+                    <button type="button" class="btn btn-outline-dark" data-bs-dismiss="modal" onclick="window.location.hash='#home'">
+                        Back to Home
+                    </button>
+                    <a href="my-orders.html" class="btn btn-warning fw-bold px-4">
+                        <i class="bi bi-receipt me-1"></i> View My Orders
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Bootstrap 5 Bundle JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- App Scripts (Relative paths for GitHub Pages) -->
+    <script src="js/data.js"></script>
+    <script src="js/storage.js"></script>
+    <script src="js/cart.js"></script>
+    <script src="js/checkout.js"></script>
+    <script src="js/main.js"></script>
+</body>
+
+</html>

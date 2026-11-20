@@ -105,10 +105,37 @@ The server will start on: **`http://localhost:3000`**
 
 ---
 
-## 🧪 Automated Test Suite
+## 🌐 GitHub Pages Live Demo Prototype (`/docs`)
 
-Run the full system integration test suite:
+A 100% client-side frontend prototype has been created in the `docs/` folder, engineered for deployment to GitHub Pages without requiring Node.js, Express, or MySQL:
+- **Live URL**: [https://swadhimit28-commits.github.io/FoodieHub/](https://swadhimit28-commits.github.io/FoodieHub/)
+- **Data Layer**: Powered by browser `localStorage` (`docs/js/data.js` & `docs/js/storage.js`)
+- **Capabilities**: Complete product search, category filtering, cart operations, 4-step checkout, customer registration/login, order history with cancellation, and interactive admin dashboard with live metric calculations.
+- **Zero Secrets**: Contains no database passwords or credentials.
+
+### **Enabling GitHub Pages Deployment**
+1. Open your GitHub Repository: [https://github.com/swadhimit28-commits/FoodieHub](https://github.com/swadhimit28-commits/FoodieHub)
+2. Go to **Settings** ➔ **Pages** (under Code and automation in the left sidebar).
+3. Under **Build and deployment**:
+   - Source: **Deploy from a branch**
+   - Branch: **`main`**
+   - Folder: **`/docs`**
+4. Click **Save**.
+5. Within 1–2 minutes, GitHub will publish the site at:
+   `https://swadhimit28-commits.github.io/FoodieHub/`
+
+---
+
+## 🧪 Automated Test Suites
+
+### 1. Full-Stack Backend & MySQL Integration Suite:
 ```bash
 node test_suite.js
 ```
-Verifies all 10 modules: Homepage loading, food search/filters, customer registration, session authorization, transaction-based order placement, customer order history, admin authentication, status updates, food CRUD, customer directory, and contact form handling.
+*Verifies all 10 modules: Express server, MySQL transactions, BCrypt auth, REST APIs, and database constraints.*
+
+### 2. GitHub Pages Frontend Prototype Test Suite:
+```bash
+node test_docs_prototype.js
+```
+*Verifies all 8 modules: localStorage persistence, relative assets, cart calculations, client-side checkout, order history, and admin dashboard operations.*
